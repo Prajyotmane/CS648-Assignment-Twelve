@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 
 class Filters extends Component {
+  constructor(props) {
+    super(props);
+    this.onUpdateSearchField = this.onUpdateSearchField.bind(this);
+  }
   onUpdateSearchField = (e) => {
-    console.log(e.target.value);
+    const value = e.target.value;
+    const name = e.target.name;
+    this.props.onFilter({
+      [name]: value,
+    });
   };
 
   render() {
     return (
       <div className="my-3">
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Search..."
-          onChange={this.onUpdateSearchField}
-        ></input>
+        <form>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            name="name"
+            onChange={this.onUpdateSearchField}
+          />
+        </form>
       </div>
     );
   }
